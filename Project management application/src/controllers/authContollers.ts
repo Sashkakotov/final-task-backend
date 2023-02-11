@@ -13,6 +13,7 @@ export const signIn = async (req: Request, res: Response) => {
   const { login, password } = req.body;
 
   const foundedUser = await userService.findOneUser({ login });
+  console.log(foundedUser);
 
   if (foundedUser) {
     const isCorrectPassword = await checkPassword(

@@ -18,6 +18,14 @@ const pointScheme = new Schema({
     type: Boolean,
     required: true,
   },
+  startDate: {
+    type: String,
+    required: true,
+  },
+  endDate: {
+    type: String,
+    required: true,
+  },
 }, { versionKey: false });
 
 export default mongoose.model('Point', pointScheme);
