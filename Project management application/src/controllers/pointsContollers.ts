@@ -36,7 +36,14 @@ export const createPoint = async (req: Request, res: Response) => {
   const guid = req.header("Guid") || "undefined";
   const initUser = req.header("initUser") || "undefined";
 
-  const bodyError = checkBody(req.body, ["title", "taskId", "boardId", "done"]);
+  const bodyError = checkBody(req.body, [
+    "title",
+    "taskId",
+    "boardId",
+    "done",
+    "startDate",
+    "endDate",
+  ]);
   if (bodyError) {
     return res.status(400).send(createError(400, "bad request: " + bodyError));
   }
@@ -57,7 +64,12 @@ export const createPoint = async (req: Request, res: Response) => {
 export const updatePoint = async (req: Request, res: Response) => {
   const guid = req.header("Guid") || "undefined";
   const initUser = req.header("initUser") || "undefined";
-  const bodyError = checkBody(req.body, ["title", "done"]);
+  const bodyError = checkBody(req.body, [
+    "title",
+    "done",
+    "startDate",
+    "endDate",
+  ]);
   if (bodyError) {
     return res.status(400).send(createError(400, "bad request: " + bodyError));
   }
@@ -87,7 +99,12 @@ export const updateSetOfPoints = async (req: Request, res: Response) => {
 
   const updatedPoints = [];
   for (const onePoint of points) {
-    const pointError = checkBody(onePoint, ["_id", "done"]);
+    const pointError = checkBody(onePoint, [
+      "_id",
+      "done",
+      "startDate",
+      "endDate",
+    ]);
     if (pointError) {
       return res.status(400).send(createError(400, pointError));
     }
